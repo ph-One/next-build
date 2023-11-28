@@ -21,6 +21,8 @@
     "test:cypress:interactive": "APP_ENV=test cypress open",
     "test:cypress:a11y": "APP_ENV=test cypress run --spec \"cypress/e2e/a11y.cy.js\"",
     "test:cypress:examples": "APP_ENV=test cypress run --spec \"cypress/e2e/examples/**/*\"",
+    "test:playwright": "APP_ENV=test playwright test playwright/tests --grep-invert a11y",
+    "test:playwright:a11y": "APP_ENV=test playwright test playwright/tests/a11y.spec.js",
     "test:examples": "APP_ENV=test jest --rootDir ./example_tests --config ./example_tests/jest.config.js",
     "test:example": "APP_ENV=test yarn test:examples example_tests/${1}/",
     "test:debug": "APP_ENV=test node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",

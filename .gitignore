@@ -22,6 +22,8 @@
 /coverage
 cypress/screenshots
 cypress/videos
+playwright/test-results
+playwright/test-report
 
 # next.js
 /.next/
