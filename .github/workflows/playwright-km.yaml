@@ -1,11 +1,10 @@
 name: Playwright Tests
 on:
-  deployment_status:
+  workflow_dispatch:
 jobs:
   test:
     timeout-minutes: 15
-    runs-on: [self-hosted, asg]
-    # Certs added for the self hosted runner
+    runs-on: ubuntu-latest
     env:
       NODE_EXTRA_CA_CERTS: /etc/ssl/certs/ca-certificates.crt
     if: github.event.deployment_status.state == 'success'
