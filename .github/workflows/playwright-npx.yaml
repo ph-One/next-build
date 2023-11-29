@@ -1,0 +1,25 @@
+name: Playwright Tests
+on:
+  deployment_status:
+jobs:
+  test:
+    timeout-minutes: 15
+    runs-on: [self-hosted, asg]
+    # Certs added for the self hosted runner
+    env:
+      NODE_EXTRA_CA_CERTS: /etc/ssl/certs/ca-certificates.crt
+    if: github.event.deployment_status.state == 'success'
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - name: Setup Yarn
+      run: |
+        corepack enable
+        corepack hydrate ./.yarn/releases/corepack.tgz
+        corepack prepare yarn@3.6.1 --activate
+    - name: Install dependencies
+      run: yarn
+    - name: Install Playwright with NPX
+      run: npx playwright install --with-deps
